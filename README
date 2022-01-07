@@ -1,0 +1,9 @@
+1:
+Generez toate combinarile nodurilor de N luate cate k. Pe masura ce obtin o
+o noua combinare, o si verific daca este k-clica. Daca da, afisez True si
+opresc programul. Daca nu, generez urmatoarea combinare. Tot asa pana am
+epuizat toate combinarile, caz in care inseamna ca nu s-a gasit nicio k-clica
+deci afisez False.
+
+2:
+La laboratorul 8, ni s-a prezentat reducerea SAT <=p k-Clique
