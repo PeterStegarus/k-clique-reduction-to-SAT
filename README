@@ -13,14 +13,22 @@ k-Clique <=p SAT: k
                   G: V = {xiv pt fiecare Liv din fiecare ci}
                      E = (xiu, xjv) apartine E daca i != j, Liu != ~Ljv
 
-(Liv = True daca nodul v este al i-lea nod din k-clica)
+(Lvi = True daca nodul v este al i-lea nod din k-clica)
 n = k
 
 Pentru fiecare i, unul dintre noduri trebuie sa fie al i-lea nod din clica.
-Deci am cate o clauza ci (i=1..k) cu literalii Liv pentru fiecare vertex v=1..n
-(ci = Li1 V Li2 V ... V Lin).
+Deci am cate o clauza ci (i=1..k) cu literalii Lvi pentru fiecare vertex v=1..N
+(ci = L1i V L2i V ... V LNi). (1)
 Totodata, acelasi nod nu poate aparea de mai multe ori in clica. Deci, pentru
-oricare nod v, ~Liv V ~Ljv oricare i != j
+oricare nod v, ~Lvi V ~Lvj oricare i != j (2)
 
-daca intre noduri nu este muchie, nu pot fi amandoua intr-o clica. Deci
-daca u si v nu sunt adiacente, am clauza ~Liu V ~Ljv pentru orice i != j
+Daca intre 2 noduri nu este muchie, nu pot fi amandoua intr-o clica. Deci daca
+u si v nu sunt adiacente, am clauza ~Lui V ~Lvj pentru orice i != j (i, j fiind
+perechi de "nivele" din clica) (3)
+
+(1) k clauze cu cate N literali: N * k
+(2) (N * combinari de k luate cate 2) clauze cu 2 literali: N * k * (k - 1)
+(3) combinari de N luate cate 2 perechi de muchii * combinari de k luate cate 2
+    perechi (i, j) clauze cu 2 literali: N * (N - 1) * k * (k - 1)
+Adunand (1), (2), (3) obtin N * k * (N * k - N + 1). Cum k < N, complexitatea
+transformarii este O(N^4), deci polinomiala.
