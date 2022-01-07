@@ -9,25 +9,18 @@ deci afisez False.
 La laboratorul 8, ni s-a prezentat reducerea SAT <=p k-Clique, pe care incerc
 sa o inversez
 
-SAT <=p k-Clique: (phi = c1 ^ c2 ^ ... ^ cn)
-k = n (1)
-G:
-  V = {xiv pt fiecare Liv din fiecare ci} (2)
-  E = (xiu, xjv) apartine E daca i != j, Liu != ~Ljv  (3)
-
-
 k-Clique <=p SAT: k
-                  G:
-                    V = {xiv pt fiecare Liv din fiecare ci}
-                    E = (xiu, xjv) apartine E daca i != j, Liu != ~Ljv
+                  G: V = {xiv pt fiecare Liv din fiecare ci}
+                     E = (xiu, xjv) apartine E daca i != j, Liu != ~Ljv
+
 (Liv = True daca nodul v este al i-lea nod din k-clica)
-(1)   -> n = k
+n = k
 
-(2.1) -> Pentru fiecare i, unul dintre noduri trebuie sa fie al i-lea nod din clica.
-         Deci am cate o clauza ci (i=1..k) cu literalii Liv pentru fiecare vertex v=1..n
-         (ci = Li1 V Li2 V ... V Lin).
-(2.2) -> Totodata, acelasi nod nu poate aparea de mai multe ori in clica. Deci,
-         pentru oricare nod v, ~Liv V ~Ljv oricare i != j
+Pentru fiecare i, unul dintre noduri trebuie sa fie al i-lea nod din clica.
+Deci am cate o clauza ci (i=1..k) cu literalii Liv pentru fiecare vertex v=1..n
+(ci = Li1 V Li2 V ... V Lin).
+Totodata, acelasi nod nu poate aparea de mai multe ori in clica. Deci, pentru
+oricare nod v, ~Liv V ~Ljv oricare i != j
 
-(3)   -> daca intre noduri nu este muchie, nu pot fi amandoua intr-o clica. Deci
-         daca u si v nu sunt adiacente, am clauza ~Liu V ~Ljv pentru orice i != j
+daca intre noduri nu este muchie, nu pot fi amandoua intr-o clica. Deci
+daca u si v nu sunt adiacente, am clauza ~Liu V ~Ljv pentru orice i != j
