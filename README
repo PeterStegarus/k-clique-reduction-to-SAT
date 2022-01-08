@@ -4,6 +4,7 @@ o noua combinare, o si verific daca este k-clica. Daca da, afisez True si
 opresc programul. Daca nu, generez urmatoarea combinare. Tot asa pana am
 epuizat toate combinarile, caz in care inseamna ca nu s-a gasit nicio k-clica
 deci afisez False.
+Complexitatea este O(n^k * k^2)
 
 2:
 La laboratorul 8, ni s-a prezentat reducerea SAT <=p k-Clique, pe care incerc
@@ -67,7 +68,7 @@ vizeaza noduri distincte, nodurile vizate au toate muchii intre ele) => nodurile
 Exemple cu poze in exemple_transformare.pdf
 
 
-Rezultate:
+Rezultate, comparatia implementarilor si cazuri & exemple favorabile:
 
 Se pare ca in toate categoriile, backtrackingul dureaza mai putin decat reducerea.
 Am facut totusi la bkt optimizarea ca nu caut subgrafuri cu dimensiunea mai mare
@@ -80,7 +81,14 @@ daca ar fi sa aleg teste in care aleg k ca fiind N/2 (gen N=100, k=50), se obser
 ca bkt dureaza mult prea mult (O(N^N) pentru ca k depinde de N). Local, pentru N=50
 si k=25, bkt ruleaza de cateva minute si inca nu s-a terminat. Pana si N=50 si k=6 e
 prea mult pentru bkt, cu tot cu optimizarile, in timp ce reducerea rezolva relativ
-repede. (N=50, k=6: bkt=92.8s, rdc=6.7s)
+repede. (N=50, k=6: bkt=92.8s, rdc=6.7s) Pe de alta parte, pentru k=N, bkt este
+instant in timp ce rdc dureaza prea mult (n=50, k=50: bkt=0.06s, rdc=384.7s).
+
+De aici deduc ca rdc este mai optim pentru un k din zona mai din mijloc a lui
+range(1,N) (k=N/2 fiind cel mai favorabil pentru rdc), in timp ce btk este mai
+optim pentru k din extremitatile range-ului (k=1 sau k=N cel mai favorabil pentru
+bkt, dar pentru k=N se obtine cea mai mare diferenta intre rdc si bkt in favoarea
+bkt)
 
 Deci, pentru un k suficient de apropiat de N/2, este mult mai optima rezolvarea cu
 reducerea. Deci k = N/2 ar face cea mai mare diferenta in favoarea reducerii.
@@ -90,4 +98,5 @@ reducerii. (local: bkt=12.7s rdc=5.1s)
 (am modificat si vreo 3 caractere in checker ca sa se poata rula ./check.sh category4)
 
 Pe scurt, pentru N suficient de mare si k suficient de apropiat de N/2, bkt dureaza
-mult prea mult, in timp ce rdc este foarte rapid
+mult prea mult, in timp ce rdc este foarte rapid. Apoi, cu cat creste k si se departeaza
+de N/2, bkt incepe sa devina mai eficient decat rdc.
