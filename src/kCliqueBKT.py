@@ -23,7 +23,7 @@ def pairs(subg):
 
 
 def is_k_clique(subg):
-    if len(subg) != k:
+    if len(subg) < k:
         return False
     subg_edges = pairs(subg)
     for edge in subg_edges:
@@ -34,11 +34,15 @@ def is_k_clique(subg):
 
 def subgs_k_length(k, subg):
     if k == 0:
+        # if k-clique found, print True and exit
+        if is_k_clique(subg):
+            print(True)
+            sys.exit()
         return
     start = subg[-1] + 1 if len(subg) > 0 else 1
-    for i in range(start, N + 1):
+    for i in range(start, N + 2 - k):
         subg.append(i)
-        subgs.append(subg[:])
+        # subgs.append(subg[:])
         subgs_k_length(k - 1, subg)
         subg.pop()
 
@@ -49,10 +53,5 @@ def gen_subgs():
 
 if __name__ == '__main__':
     k, N, M, edges = read()
-    subgs = []
     gen_subgs()
-    for subg in subgs:
-        if is_k_clique(subg):
-            print(True)
-            sys.exit()
-    print(False)
+    print(False)    # still running => k-clique doesn't exist

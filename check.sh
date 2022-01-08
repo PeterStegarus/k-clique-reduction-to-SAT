@@ -36,7 +36,7 @@ function run_tests() {
     if [[ ! -z $3 ]]; then
         local cs=( $3 )
     else
-        local cs=( 1 2 3 )
+        local cs=( 1 2 3 4 )
     fi 
 
     for c in ${cs[@]}; do
@@ -105,7 +105,7 @@ cp sat_solver.py out/
 cp -r tests out/
 cp sat_solver.py out/
 cd out
-for c in {1..3}; do
+for c in {1..4}; do
     mkdir -p tests/aux/category${c}
     mkdir -p tests/out/category${c}
 done
@@ -125,7 +125,7 @@ case "$1" in
     rdc)
         run_rdc_checks
     ;;
-    category[1-3])
+    category[1-4])
         CTG=${1:(-1)}
         run_bkt_checks $CTG
         run_rdc_checks $CTG
