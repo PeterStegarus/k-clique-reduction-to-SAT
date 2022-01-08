@@ -65,3 +65,9 @@ vizeaza noduri distincte, nodurile vizate au toate muchii intre ele) => nodurile
 
 
 Exemple cu poze in exemple_transformare.pdf
+
+
+Rezultate:
+
+Se pare ca in toate categoriile, backtrackingul dureaza mai putin decat reducerea.
+Transformarea este cu siguranta polinomiala

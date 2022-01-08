@@ -1,5 +1,4 @@
 import sys
-from itertools import combinations
 
 
 def read():
@@ -13,33 +12,47 @@ def read():
     return k, N, M, edges
 
 
-def is_k_clique(edges: list, subg):
-    subg_edges = list(combinations(subg, 2))
+def pairs(subg):
+    pairs = []
+    for i in subg:
+        for j in subg:
+            if i == j:
+                continue
+            pairs.append([i, j])
+    return pairs
+
+
+def is_k_clique(subg):
+    if len(subg) != k:
+        return False
+    subg_edges = pairs(subg)
     for edge in subg_edges:
-        edge = list(edge)
         if edge not in edges and list(reversed(edge)) not in edges:
             return False
     return True
 
 
-def subgs_k_length(k, N, edges, subg):
+def subgs_k_length(k, subg):
     if k == 0:
-        if is_k_clique(edges, subg):
-            print(True)
-            sys.exit()
         return
     start = subg[-1] + 1 if len(subg) > 0 else 1
-    for i in range(start, N + 2 - k):
+    for i in range(start, N + 1):
         subg.append(i)
-        subgs_k_length(k - 1, N, edges, subg)
+        subgs.append(subg[:])
+        subgs_k_length(k - 1, subg)
         subg.pop()
 
 
-def gen_subgs(k, N, edges):
-    subgs_k_length(k, N, edges, [])
+def gen_subgs():
+    subgs_k_length(N, [])
 
 
 if __name__ == '__main__':
     k, N, M, edges = read()
-    gen_subgs(k, N, edges)
+    subgs = []
+    gen_subgs()
+    for subg in subgs:
+        if is_k_clique(subg):
+            print(True)
+            sys.exit()
     print(False)
