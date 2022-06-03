@@ -1,3 +1,5 @@
+# Algorithm Analysis
+Comparison between a backtracking solution to the k-clique problem and a reduction to the NP-complete SAT problem.
 # Backtracking
 Compute all combinations of N nodes taken k. If k-clique found, print True. Otherwise, if all combinations were checked and none satisfied k-clique, print False.
 
